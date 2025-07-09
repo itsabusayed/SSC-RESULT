@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>এসএসসি-২৫ ফলপ্রার্থী তালিকা - মনসুরনগর</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SolaimanLipi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #60ad5e;
+      --primary-dark: #005005;
+      --secondary: #ff9800;
+      --background: #f0f4c3;
+      --card-bg: #ffffff;
+      --text: #1b5e20;
+      --text-light: #4c8c4a;
+      --error: #c62828;
+      --border: #c8e6c9;
+    }
+    body.dark-mode {
+      --primary: #81c784;
+      --primary-light: #4c8c4a;
+      --primary-dark: #4c8c4a;
+      --secondary: #ffb74d;
+      --background: #263238;
+      --card-bg: #37474f;
+      --text: #e8f5e9;
+      --text-light: #a5d6a7;
+      --error: #ef9a9a;
+      --border: #455a64;
+    }
+    body {
+      font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+      background: var(--background);
+      padding: 20px;
+      margin: 0;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-family: 'Baloo Da 2', cursive;
+      font-size: 32px;
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .controls button, .controls input, .controls select {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+      transition: all 0.2s;
+    }
+    .controls button {
+      background-color: var(--primary);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .controls button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .controls button.secondary {
+      background-color: var(--secondary);
+    }
+    .controls button.secondary:hover {
+      background-color: #e65100;
+    }
+    .controls input[type="text"], .controls select {
+      border: 2px solid var(--primary);
+      background: var(--card-bg);
+      color: var(--text);
+      min-width: 200px;
+    }
+    .controls input[type="text"]:focus, .controls select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 5px var(--primary-light);
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .stat-card {
+      background: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 150px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    .stat-card h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: normal;
+    }
+    .stat-card p {
+      margin: 5px 0 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(0,0,0,0.05);
+    }
+    tr:hover {
+      background-color: var(--primary-light);
+      color: white;
+      cursor: pointer;
+    }
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 16px;
+      margin: 0 5px;
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      transform: scale(1.2);
+    }
+    .delete-btn {
+      color: var(--error);
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--text);
+    }
+    .modal-title {
+      margin-top: 0;
+      color: var(--primary);
+      text-align: center;
+      font-size: 24px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--text);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 5px var(--primary-light);
+    }
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1001;
+      animation: slideIn 0.3s, fadeOut 0.5s 2.5s forwards;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    .print-only {
+      display: none;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .print-only {
+        display: block;
+      }
+      #students-table, #students-table * {
+        visibility: visible;
+      }
+      #students-table {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+      }
+      .controls, .stats, .action-btn {
+        display: none !important;
+      }
+    }
+    .section-title {
+      font-family: 'Baloo Da 2', cursive;
+      font-size: 20px;
+      color: var(--primary);
+      margin: 25px 0 15px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
+    }
+    .error-message {
+      color: var(--error);
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>এস‌এস‌সি-২৫ ফলপ্রার্থীদের তালিকা</h2>
+    
+    <div class="stats">
+      <div class="stat-card">
+        <h3>মোট শিক্ষার্থী</h3>
+        <p id="total-students">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>বিজ্ঞান বিভাগ</h3>
+        <p id="science-students">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>মানবিক বিভাগ</h3>
+        <p id="humanities-students">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>কারিগরি</h3>
+        <p id="commerce-students">0</p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="নাম, প্রতিষ্ঠান, মোবাইল খুঁজুন..." onkeyup="searchTable()">
+      <select id="filterDepartment" onchange="filterTable()">
+        <option value="">সব বিভাগ</option>
+        <option value="বিজ্ঞান">বিজ্ঞান</option>
+        <option value="মানবিক">মানবিক</option>
+        <option value="কারিগরি">কারিগরি</option>
+      </select>
+      <select id="filterOrganization" onchange="filterTable()">
+        <option value="">সব প্রতিষ্ঠান</option>
+      </select>
+      <button onclick="toggleDarkMode()"><i class="fas fa-moon"></i> ডার্ক মোড</button>
+      <button onclick="window.print()"><i class="fas fa-print"></i> প্রিন্ট</button>
+      <button onclick="downloadPDF()"><i class="fas fa-file-pdf"></i> পিডিএফ</button>
+      <button class="secondary" onclick="showAddStudentForm()"><i class="fas fa-plus"></i> নতুন শিক্ষার্থী</button>
+    </div>
+    
+    <table id="students-table">
+      <thead>
+        <tr>
+          <th>ক্রমিক</th>
+          <th>নাম</th>
+          <th>প্রতিষ্ঠান</th>
+          <th>বিভাগ</th>
+          <th>সাংগঠনিক মান</th>
+          <th>মোবাইল</th>
+          <th>কার্যক্রম</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+  
+  <!-- Student Modal -->
+  <div id="studentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <h3 class="modal-title">শিক্ষার্থীর বিস্তারিত তথ্য</h3>
+      <div id="modalContent"></div>
+      <div class="form-actions">
+        <button class="edit-btn" onclick="editModalData()"><i class="fas fa-edit"></i> এডিট করুন</button>
+        <button class="delete-btn" onclick="deleteStudent()"><i class="fas fa-trash"></i> ডিলিট করুন</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add/Edit Student Modal -->
+  <div id="formModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeFormModal()">×</span>
+      <h3 class="modal-title" id="formModalTitle">নতুন শিক্ষার্থী যোগ করুন</h3>
+      <form id="studentForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="name">পূর্ণ নাম</label>
+          <input type="text" id="name" required>
+          <div class="error-message" id="name-error">নাম অবশ্যই দিতে হবে</div>
+        </div>
+        <div class="form-group">
+          <label for="institute">প্রতিষ্ঠানের নাম</label>
+          <input type="text" id="institute" required>
+          <div class="error-message" id="institute-error">প্রতিষ্ঠানের নাম অবশ্যই দিতে হবে</div>
+        </div>
+        <div class="form-group">
+          <label for="department">বিভাগ</label>
+          <select id="department" required>
+            <option value="">বিভাগ নির্বাচন করুন</option>
+            <option value="বিজ্ঞান">বিজ্ঞান</option>
+            <option value="মানবিক">মানবিক</option>
+            <option value="কারিগরি">কারিগরি</option>
+          </select>
+          <div class="error-message" id="department-error">বিভাগ নির্বাচন করুন</div>
+        </div>
+        <div class="form-group">
+          <label for="organizationLevel">সাংগঠনিক মান</label>
+          <select id="organizationLevel" required>
+            <option value="">নির্বাচন করুন</option>
+            <option value="সাথী">সাথী</option>
+            <option value="কর্মী">কর্মী</option>
+            <option value="সদস্য">সদস্য</option>
+            <option value="সমর্থক">সমর্থক</option>
+          </select>
+          <div class="error-message" id="organizationLevel-error">সাংগঠনিক মান নির্বাচন করুন</div>
+        </div>
+        <div class="form-group">
+          <label for="mobile">মোবাইল নম্বর</label>
+          <input type="text" id="mobile" pattern="[0-9+]{11,14}" required>
+          <div class="error-message" id="mobile-error">সঠিক মোবাইল নম্বর দিন (11-14 ডিজিট)</div>
+        </div>
+        <div class="form-group">
+          <label for="address">ঠিকানা</label>
+          <textarea id="address" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="fatherName">পিতার নাম</label>
+          <input type="text" id="fatherName">
+        </div>
+        <div class="form-group">
+          <label for="motherName">মাতার নাম</label>
+          <input type="text" id="motherName">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="secondary" onclick="closeFormModal()"><i class="fas fa-times"></i> বাতিল</button>
+          <button type="submit" class="primary"><i class="fas fa-save"></i> সংরক্ষণ করুন</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  
+  <script>
+    // Initialize students data
+    let students = [
+  {
+    "নাম": "আব্দুল কাইয়ুম",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "আবদুল্লাহ আল রাহি",
+    "প্রতিষ্ঠান": "মহলাল উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801619-837876",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "ইকরাম",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "ইমন আহমেদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "খালেদ আহমদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "জিদান আহমেদ",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "কর্মী",
+    "মোবাইল": "+8801620-728787",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "তানভির আহমদ মুহিদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "বিজ্ঞান",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "ফেরদৌস আহমেদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মাহিন মিয়া",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মাহিন চৌধুরী",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মিজান আহমেদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মুনতাসির রব্",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "কর্মী",
+    "মোবাইল": "+8801722-687975",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মুস্তাকিন আহমেদ",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801770-965139",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "মাসুম আহমদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "কর্মী",
+    "মোবাইল": "+8801996-669012",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "রাহিন মিয়া",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "রাজিবুল ইসলাম",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801618-804122",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "রাকিব আলি",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসा",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801782-038433",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "রেজাউল করিম ইনায়াত",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801326-310632",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "রিহাব মিয়া",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সজিব উদ্দিন",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801726-990818",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সাইদুল ইসলাম রাব্বি",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801409-328574",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সাহিদ আহমদ মাহি",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "বিজ্ঞান",
+    "সাংগঠনিক মান": "সাথী",
+    "মোবাইল": "+8801300-698063",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সিহাব আলী",
+    "প্রতিষ্ঠান": "মহলাল উচ্চ বিদ্যালয়",
+    "বিভাগ": "কারিগরি",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সুমেল মিয়া",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সাব্বির আহমেদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "কর্মী",
+    "মোবাইল": "+8801921-246665",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "হাবিবুর রহমান রাহি",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "কর্মী",
+    "মোবাইল": "+8801763-884925",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "হাসান আহমেদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801757-741074",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "নিয়ামুল ইসলাম",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "সমর্থক",
+    "মোবাইল": "+8801726-661198",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "শাহ নেওয়াজ",
+    "প্রতিষ্ঠান": "বালিসহস্র হাঃআঃ মাতলিব লতিফিয়া মাদ্রাসা",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801781-526760",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  },
+  {
+    "নাম": "সিয়াম আহমদ",
+    "প্রতিষ্ঠান": "হাজী সালামত স্মৃতি উচ্চ বিদ্যালয়",
+    "বিভাগ": "মানবিক",
+    "সাংগঠনিক মান": "বন্ধু",
+    "মোবাইল": "+8801XXX-XXXXXX",
+    "ঠিকানা": "মনসুরনগর",
+    "পিতার নাম": "উল্লেখ নেই",
+    "মাতার নাম": "উল্লেখ নেই"
+  }
+];
+    
+
+    // Current student being edited
+    let currentEditIndex = -1;
+    
+    // Initialize the app
+    document.addEventListener('DOMContentLoaded', function() {
+      renderTable();
+      updateStats();
+      populateInstituteFilter();
+      
+      // Check for dark mode preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+
+    // Save data to localStorage
+    function saveToLocal() {
+      localStorage.setItem('students', JSON.stringify(students));
+      updateStats();
+      showToast('ডেটা সফলভাবে সংরক্ষণ করা হয়েছে');
+    }
+
+    // Render the student table
+    function renderTable(filteredStudents = null) {
+      const tbody = document.getElementById("table-body");
+      tbody.innerHTML = "";
+      
+      const studentsToRender = filteredStudents || students;
+      
+      studentsToRender.forEach((s, i) => {
+        let row = `<tr onclick="showProfile(${i})">
+          <td>${i + 1}</td>
+          <td>${s["নাম"]}</td>
+          <td>${s["প্রতিষ্ঠান"]}</td>
+          <td>${s["বিভাগ"]}</td>
+          <td>${s["সাংগঠনিক মান"]}</td>
+          <td>${s["মোবাইল"]}</td>
+          <td>
+            <button class="action-btn" onclick="editStudent(${i}, event)"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-btn" onclick="deleteStudent(${i}, event)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+
+    // Show student profile in modal
+    function showProfile(index) {
+      const student = students[index];
+      let content = `
+        <div class="section-title">ব্যক্তিগত তথ্য</div>
+        <p><strong>নাম:</strong> ${student["নাম"]}</p>
+        <p><strong>প্রতিষ্ঠান:</strong> ${student["প্রতিষ্ঠান"]}</p>
+        <p><strong>বিভাগ:</strong> ${student["বিভাগ"]}</p>
+        <p><strong>সাংগঠনিক মান:</strong> ${student["সাংগঠনিক মান"]}</p>
+        <p><strong>মোবাইল:</strong> ${student["মোবাইল"]}</p>
+        
+        <div class="section-title">অতিরিক্ত তথ্য</div>
+        <p><strong>ঠিকানা:</strong> ${student["ঠিকানা"] || 'উল্লেখ নেই'}</p>
+        <p><strong>পিতার নাম:</strong> ${student["পিতার নাম"] || 'উল্লেখ নেই'}</p>
+        <p><strong>মাতার নাম:</strong> ${student["মাতার নাম"] || 'উল্লেখ নেই'}</p>
+      `;
+      
+      document.getElementById("modalContent").innerHTML = content;
+      document.getElementById("studentModal").style.display = "flex";
+      document.getElementById("studentModal").setAttribute('data-index', index);
+    }
+
+    // Close profile modal
+    function closeModal() {
+      document.getElementById("studentModal").style.display = "none";
+    }
+
+    // Edit student data in modal
+    function editModalData() {
+      const index = document.getElementById("studentModal").getAttribute('data-index');
+      editStudent(index);
+      closeModal();
+    }
+
+    // Show add student form
+    function showAddStudentForm() {
+      currentEditIndex = -1;
+      document.getElementById("formModalTitle").textContent = "নতুন শিক্ষার্থী যোগ করুন";
+      document.getElementById("studentForm").reset();
+      document.getElementById("formModal").style.display = "flex";
+    }
+
+    // Edit student
+    function editStudent(index, event = null) {
+      if (event) event.stopPropagation();
+      
+      currentEditIndex = index;
+      const student = students[index];
+      
+      document.getElementById("formModalTitle").textContent = "শিক্ষার্থী সম্পাদনা করুন";
+      document.getElementById("name").value = student["নাম"] || "";
+      document.getElementById("institute").value = student["প্রতিষ্ঠান"] || "";
+      document.getElementById("department").value = student["বিভাগ"] || "";
+      document.getElementById("organizationLevel").value = student["সাংগঠনিক মান"] || "";
+      document.getElementById("mobile").value = student["মোবাইল"] || "";
+      document.getElementById("address").value = student["ঠিকানা"] || "";
+      document.getElementById("fatherName").value = student["পিতার নাম"] || "";
+      document.getElementById("motherName").value = student["মাতার নাম"] || "";
+      
+      document.getElementById("formModal").style.display = "flex";
+    }
+
+    // Handle form submission
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      // Validate form
+      if (!validateForm()) return;
+      
+      const studentData = {
+        "নাম": document.getElementById("name").value,
+        "প্রতিষ্ঠান": document.getElementById("institute").value,
+        "বিভাগ": document.getElementById("department").value,
+        "সাংগঠনিক মান": document.getElementById("organizationLevel").value,
+        "মোবাইল": document.getElementById("mobile").value,
+        "ঠিকানা": document.getElementById("address").value,
+        "পিতার নাম": document.getElementById("fatherName").value,
+        "মাতার নাম": document.getElementById("motherName").value
+      };
+      
+      if (currentEditIndex === -1) {
+        // Add new student
+        students.push(studentData);
+        showToast('নতুন শিক্ষার্থী সফলভাবে যোগ করা হয়েছে');
+      } else {
+        // Update existing student
+        students[currentEditIndex] = studentData;
+        showToast('শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে');
+      }
+      
+      saveToLocal();
+      renderTable();
+      closeFormModal();
+      populateInstituteFilter();
+    }
+
+    // Validate form fields
+    function validateForm() {
+      let isValid = true;
+      const requiredFields = [
+        { id: 'name', error: 'name-error' },
+        { id: 'institute', error: 'institute-error' },
+        { id: 'department', error: 'department-error' },
+        { id: 'organizationLevel', error: 'organizationLevel-error' },
+        { id: 'mobile', error: 'mobile-error' }
+      ];
+      
+      // Reset errors
+      requiredFields.forEach(field => {
+        document.getElementById(field.error).style.display = 'none';
+      });
+      
+      // Check required fields
+      requiredFields.forEach(field => {
+        const value = document.getElementById(field.id).value.trim();
+        if (!value) {
+          document.getElementById(field.error).style.display = 'block';
+          isValid = false;
+        }
+      });
+      
+      // Validate mobile number
+      const mobile = document.getElementById("mobile").value;
+      const mobileRegex = /^[0-9+]{11,14}$/;
+      if (!mobileRegex.test(mobile)) {
+        document.getElementById("mobile-error").style.display = 'block';
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+
+    // Close form modal
+    function closeFormModal() {
+      document.getElementById("formModal").style.display = "none";
+    }
+
+    // Delete student
+    function deleteStudent(index, event = null) {
+      if (event) event.stopPropagation();
+      
+      if (index === undefined || index === null) {
+        index = document.getElementById("studentModal").getAttribute('data-index');
+      }
+      
+      if (confirm(`আপনি কি নিশ্চিত যে "${students[index]["নাম"]}" কে ডিলিট করতে চান?`)) {
+        students.splice(index, 1);
+        saveToLocal();
+        renderTable();
+        populateInstituteFilter();
+        closeModal();
+        showToast('শিক্ষার্থী সফলভাবে ডিলিট করা হয়েছে');
+      }
+    }
+
+    // Search table
+    function searchTable() {
+      const val = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#students-table tbody tr");
+      
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(val) ? "" : "none";
+      });
+    }
+
+    // Filter table by department and institute
+    function filterTable() {
+      const department = document.getElementById("filterDepartment").value;
+      const institute = document.getElementById("filterOrganization").value;
+      
+      let filteredStudents = students;
+      
+      if (department) {
+        filteredStudents = filteredStudents.filter(s => s["বিভাগ"] === department);
+      }
+      
+      if (institute) {
+        filteredStudents = filteredStudents.filter(s => s["প্রতিষ্ঠান"] === institute);
+      }
+      
+      renderTable(filteredStudents);
+    }
+
+    // Populate institute filter dropdown
+    function populateInstituteFilter() {
+      const select = document.getElementById("filterOrganization");
+      const institutes = [...new Set(students.map(s => s["প্রতিষ্ঠান"]))];
+      
+      // Clear existing options except the first one
+      while (select.options.length > 1) {
+        select.remove(1);
+      }
+      
+      // Add new options
+      institutes.forEach(institute => {
+        const option = document.createElement("option");
+        option.value = institute;
+        option.textContent = institute;
+        select.appendChild(option);
+      });
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+
+    // Download PDF
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      // Title
+      doc.setFontSize(20);
+      doc.setTextColor(46, 125, 50);
+      doc.text("এসএসসি-২৫ ফলপ্রার্থী তালিকা", 105, 15, { align: 'center' });
+      
+      // Date
+      doc.setFontSize(12);
+      doc.setTextColor(100, 100, 100);
+      const today = new Date();
+      doc.text(`প্রস্তুতের তারিখ: ${today.toLocaleDateString('bn-BD')}`, 105, 25, { align: 'center' });
+      
+      // Stats
+      doc.setFontSize(14);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`মোট শিক্ষার্থী: ${students.length}`, 14, 35);
+      
+      // Table data
+      const tableData = students.map((s, i) => [
+        i + 1,
+        s["নাম"],
+        s["প্রতিষ্ঠান"],
+        s["বিভাগ"],
+        s["সাংগঠনিক মান"],
+        s["মোবাইল"]
+      ]);
+      
+      // AutoTable
+      doc.autoTable({
+        head: [['ক্রমিক', 'নাম', 'প্রতিষ্ঠান', 'বিভাগ', 'সাংগঠনিক মান', 'মোবাইল']],
+        body: tableData,
+        startY: 40,
+        styles: {
+          font: 'SolaimanLipi',
+          fontStyle: 'normal',
+          fontSize: 10,
+          textColor: [0, 0, 0],
+          cellPadding: 3,
+          overflow: 'linebreak'
+        },
+        headStyles: {
+          fillColor: [46, 125, 50],
+          textColor: [255, 255, 255],
+          fontStyle: 'bold'
+        },
+        alternateRowStyles: {
+          fillColor: [240, 240, 240]
+        },
+        margin: { top: 40 }
+      });
+      
+      // Footer
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`পৃষ্ঠা ${i}/${pageCount}`, 105, doc.internal.pageSize.height - 10, { align: 'center' });
+      }
+      
+      doc.save("SSC25_List.pdf");
+      showToast('পিডিএফ ডাউনলোড শুরু হয়েছে');
+    }
+
+    // Update statistics
+    function updateStats() {
+      document.getElementById("total-students").textContent = students.length;
+      
+      const scienceCount = students.filter(s => s["বিভাগ"] === "বিজ্ঞান").length;
+      const humanitiesCount = students.filter(s => s["বিভাগ"] === "মানবিক").length;
+      const commerceCount = students.filter(s => s["বিভাগ"] === "কারিগরি").length;
+      
+      document.getElementById("science-students").textContent = scienceCount;
+      document.getElementById("humanities-students").textContent = humanitiesCount;
+      document.getElementById("commerce-students").textContent = commerceCount;
+    }
+
+    // Show toast notification
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.display = "block";
+      
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
